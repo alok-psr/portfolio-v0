@@ -24,6 +24,7 @@ import { Footer } from "@/components/Footer";
 import { Cursor } from "@/components/Cursor";
 import { SystemProvider } from "@/context/SystemContext";
 import { Toaster } from "@/components/ui/sonner";
+import { KeyboardNavigation } from "@/components/KeyboardNavigation";
 
 export default function RootLayout({
   children,
@@ -44,6 +45,7 @@ export default function RootLayout({
           >
             <Cursor />
             <Background />
+            <KeyboardNavigation />
             <div className="flex-1 flex flex-col relative z-10">
                {/* Main Content Frame Container */}
                <main className="flex-1 flex flex-col">
