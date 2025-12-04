@@ -16,5 +16,9 @@
     "twitter": "https://twitter.com",
     "email": "mailto:hello@example.com"
   },
-  "skills": ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Python", "Tailwind CSS", "PostgreSQL", "Docker"]
+  "skills": {
+    "frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML/CSS"],
+    "backend": ["Node.js", "Python", "PostgreSQL", "Supabase", "Express"],
+    "tools": ["Docker", "Git", "VS Code", "Figma", "Vercel"]
+  }
 }

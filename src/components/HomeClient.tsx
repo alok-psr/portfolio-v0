@@ -122,15 +122,47 @@ export function HomeClient({ profile, projects }: HomeClientProps) {
         <div className="flex items-center justify-between mb-12">
             <h2 className="text-3xl font-bold">Technical Skills</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="col-span-full">
-                 <div className="flex flex-wrap gap-2">
-                    {profile.skills.map((skill) => (
-                        <span key={skill} className="px-3 py-1 bg-muted rounded-full text-sm font-mono">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Frontend */}
+            <div className="space-y-3">
+                <h3 className="font-bold text-accent flex items-center gap-2">
+                    <span className="text-xl">🎨</span> Frontend
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                    {profile.skills.frontend.map((skill) => (
+                        <span key={skill} className="px-2.5 py-1 bg-muted/50 border border-border rounded-md text-xs font-mono text-muted-foreground">
                             {skill}
                         </span>
                     ))}
-                 </div>
+                </div>
+            </div>
+
+            {/* Backend */}
+            <div className="space-y-3">
+                <h3 className="font-bold text-accent flex items-center gap-2">
+                    <span className="text-xl">⚙️</span> Backend
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                    {profile.skills.backend.map((skill) => (
+                        <span key={skill} className="px-2.5 py-1 bg-muted/50 border border-border rounded-md text-xs font-mono text-muted-foreground">
+                            {skill}
+                        </span>
+                    ))}
+                </div>
+            </div>
+
+            {/* Tools */}
+            <div className="space-y-3">
+                <h3 className="font-bold text-accent flex items-center gap-2">
+                    <span className="text-xl">🛠️</span> Tools & Libraries
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                    {profile.skills.tools.map((skill) => (
+                        <span key={skill} className="px-2.5 py-1 bg-muted/50 border border-border rounded-md text-xs font-mono text-muted-foreground">
+                            {skill}
+                        </span>
+                    ))}
+                </div>
             </div>
         </div>
       </section>

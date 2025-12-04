@@ -1,18 +1,17 @@
 import Link from "next/link";
 import { getSortedPostsData } from "@/lib/blog";
 import { ArrowRight } from "lucide-react";
+import { PageHeader } from "@/components/PageHeader";
 
 export default function Blog() {
   const allPostsData = getSortedPostsData();
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-3xl">
-      <div className="mb-12 space-y-4">
-        <h1 className="text-4xl font-bold">Blog</h1>
-        <p className="text-muted-foreground">
-          Thoughts, tutorials, and updates on my journey.
-        </p>
-      </div>
+      <PageHeader 
+        title="BLOG" 
+        description="Thoughts, tutorials, and updates on my journey." 
+      />
 
       <div className="space-y-8">
         {allPostsData.map(({ id, date, title, description, tags }) => (

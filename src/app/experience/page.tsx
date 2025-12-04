@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { PageHeader } from "@/components/PageHeader";
 
 const experiences = [
   {
@@ -29,16 +30,10 @@ const experiences = [
 export default function Experience() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-3xl">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-12 space-y-4"
-      >
-        <h1 className="text-4xl font-bold">Experience</h1>
-        <p className="text-muted-foreground">
-          My professional journey and the skills I've honed along the way.
-        </p>
-      </motion.div>
+      <PageHeader 
+        title="EXPERIENCE" 
+        description="My professional journey and the skills I've honed along the way." 
+      />
 
       <div className="space-y-12">
         {experiences.map((exp, index) => (

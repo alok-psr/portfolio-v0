@@ -1,10 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
+import { useSystem } from "@/context/SystemContext";
 
 export function KeyboardNavigation() {
+  const { isTerminalOpen } = useSystem();
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (isTerminalOpen) return; // Disable if terminal is open
+
       if (e.key === "Tab") {
         e.preventDefault();
 
@@ -48,7 +53,7 @@ export function KeyboardNavigation() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [isTerminalOpen]);
 
   return null;
 }

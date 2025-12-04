@@ -23,7 +23,7 @@ export function Typewriter({ children }: { children: React.ReactNode }) {
           setIsTyping(false);
           clearInterval(timer);
         }
-      }, 15); // Speed of typing
+      }, 5); // Speed of typing
 
       return () => clearInterval(timer);
     }

@@ -16,9 +16,11 @@ interface Command {
 export function Terminal() {
   const { 
     setFontMode, 
+    isTerminalOpen: isOpen,
+    setTerminalOpen: setIsOpen,
   } = useSystem();
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  // const [isOpen, setIsOpen] = React.useState(false); // Replaced by context
   const [input, setInput] = React.useState("");
   const [history, setHistory] = React.useState<Command[]>([]);
   const [mode, setMode] = React.useState<"default" | "admin_login">("default");
@@ -45,7 +47,7 @@ export function Terminal() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.key === "k") {
         e.preventDefault();
-        setIsOpen((prev) => !prev);
+        setIsOpen(!isOpen);
         // Reset mode if closing, or keep if opening? Let's reset to default on toggle for safety
         if (isOpen) setMode("default"); 
       }
@@ -131,7 +133,7 @@ export function Terminal() {
       setTimeout(() => {
         router.push(action === "home" ? "/" : `/${action}`);
         setIsOpen(false);
-      }, 800);
+      }, 300);
       setHistory((prev) => [...prev, { command: cmd, output }]);
       setSuggestions([]);
       return;
@@ -229,7 +231,7 @@ export function Terminal() {
           setTimeout(() => {
             router.push(page === "home" ? "/" : `/${page}`);
             setIsOpen(false);
-          }, 800);
+          }, 300);
         } else {
           output = `Page not found: ${page}. Try: ${pages.join(", ")}`;
         }

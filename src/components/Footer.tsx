@@ -21,7 +21,7 @@ export function Footer() {
           <Link href="https://x.com/AL0K__PSR" target="_blank" className="text-muted-foreground hover:text-accent transition-colors">
             <Twitter className="w-5 h-5" />
           </Link>
-          <Link href="mailto:hello@example.com" className="text-muted-foreground hover:text-accent transition-colors">
+          <Link href="mailto:alokrathor136@gmail.com" className="text-muted-foreground hover:text-accent transition-colors">
             <Mail className="w-5 h-5" />
           </Link>
         </div>

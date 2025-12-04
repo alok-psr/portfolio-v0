@@ -34,7 +34,11 @@ export interface ProfileData {
     twitter: string;
     email: string;
   };
-  skills: string[];
+  skills: {
+    frontend: string[];
+    backend: string[];
+    tools: string[];
+  };
 }
 
 // Helper to read JSON

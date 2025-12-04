@@ -48,7 +48,7 @@ export default function RootLayout({
             <KeyboardNavigation />
             <div className="flex-1 flex flex-col relative z-10">
                {/* Main Content Frame Container */}
-               <main className="flex-1 flex flex-col">
+               <main className="flex-1 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                   {children}
                </main>
                <Footer />
