@@ -24,6 +24,7 @@ export function Terminal() {
   const [mode, setMode] = React.useState<"default" | "admin_login">("default");
   const inputRef = React.useRef<HTMLInputElement>(null);
   const scrollRef = React.useRef<HTMLDivElement>(null);
+  const savedHistory = React.useRef<Command[]>([]);
   const router = useRouter();
 
   const [suggestions, setSuggestions] = React.useState<string[]>([]);
@@ -52,10 +53,11 @@ export function Terminal() {
         e.preventDefault();
         if (isOpen && mode === "admin_login") {
             setMode("default");
-            setHistory([]);
+            setHistory(savedHistory.current);
         } else {
             setIsOpen(true);
             setMode("admin_login");
+            savedHistory.current = history;
             setHistory([]); 
             setTimeout(() => inputRef.current?.focus(), 100);
         }
@@ -308,6 +310,7 @@ export function Terminal() {
                  router.push("/admin");
                  setIsOpen(false);
                  setMode("default");
+                 setHistory(savedHistory.current);
                  setInput("");
              }, 1000);
         } else {
