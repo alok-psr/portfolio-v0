@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --accent: #2563eb; /* Blue-600 */
+  --accent-foreground: #ffffff;
+  --border: #e5e5e5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --muted: #262626;
+    --muted-foreground: #a3a3a3;
+    --accent: #3b82f6; /* Blue-500 */
+    --accent-foreground: #ffffff;
+    --border: #262626;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Frame Corners Utility */
+.frame-corners {
+  position: relative;
+}
+
+.frame-corners::before,
+.frame-corners::after {
+  content: "";
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-color: var(--foreground);
+  border-style: solid;
+  border-width: 2px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.frame-corners::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.frame-corners::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+/* Optional: Add the other two corners if needed, or just use these two for a diagonal effect */
+.frame-corners-all::before {
+  /* Top-Left */
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+/* We need more pseudos for 4 corners, or use a different technique. 
+   For now, let's stick to the diagonal or add child elements if needed. 
+   Actually, let's use a background gradient approach for 4 corners to avoid extra elements if possible,
+   but pseudos are cleaner for animations. 
+   Let's stick to the top-left and bottom-right for the "minimal" aesthetic.
+*/

@@ -1,0 +1,47 @@
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  link: string;
+  github?: string;
+  image?: string; // Optional for now
+  featured?: boolean;
+}
+
+export const projects: Project[] = [
+  {
+    id: "portfolio",
+    title: "Keyboard-First Portfolio",
+    description: "A developer portfolio with a terminal-based navigation system and clean aesthetic.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    link: "https://portfolio.demo",
+    github: "https://github.com/user/portfolio",
+    featured: true,
+  },
+  {
+    id: "ecommerce",
+    title: "Modern E-commerce",
+    description: "Full-stack e-commerce platform with Stripe integration and admin dashboard.",
+    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+    link: "https://shop.demo",
+    github: "https://github.com/user/shop",
+    featured: true,
+  },
+  {
+    id: "chat-app",
+    title: "Real-time Chat",
+    description: "WebSocket-based chat application with group messaging and file sharing.",
+    tags: ["Socket.io", "Express", "React"],
+    link: "https://chat.demo",
+    github: "https://github.com/user/chat",
+  },
+  {
+    id: "weather-cli",
+    title: "Weather CLI",
+    description: "Command-line tool to fetch weather updates for any city.",
+    tags: ["Go", "CLI", "API"],
+    link: "#",
+    github: "https://github.com/user/weather-cli",
+  },
+];
