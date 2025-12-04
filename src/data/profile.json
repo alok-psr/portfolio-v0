@@ -1,0 +1,20 @@
+{
+  "name": "Alok",
+  "title": "Full Stack Developer & UI/UX Enthusiast.",
+  "bio": "Building digital experiences with code and creativity.",
+  "about": {
+    "title": "About Me",
+    "subtitle": "Developer, Designer, and Creator.",
+    "description1": "Hello! I'm Alok, a passionate developer based in San Francisco. I love building things for the web, from simple landing pages to complex web applications.",
+    "description2": "My journey started when I wrote my first line of code in Python. Since then, I've explored various technologies and frameworks, but I always find myself coming back to the web.",
+    "description3": "When I'm not coding, you can find me reading about the latest tech trends, playing video games, or hiking."
+  },
+  "image": "",
+  "social": {
+    "github": "https://github.com",
+    "linkedin": "https://linkedin.com",
+    "twitter": "https://twitter.com",
+    "email": "mailto:hello@example.com"
+  },
+  "skills": ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Python", "Tailwind CSS", "PostgreSQL", "Docker"]
+}

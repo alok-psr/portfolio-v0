@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useEffect, useRef } from "react";
 
@@ -8,6 +8,8 @@ export function Background() {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
+
 
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
@@ -22,7 +24,7 @@ export function Background() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 -z-50 pointer-events-none overflow-hidden"
+      className="fixed inset-0 -z-50 pointer-events-none overflow-hidden bg-background"
       style={
         {
           "--mouse-x": "50%",

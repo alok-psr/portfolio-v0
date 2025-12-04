@@ -20,6 +20,10 @@ export const metadata: Metadata = {
 import { ThemeProvider } from "@/components/theme-provider";
 import { Terminal } from "@/components/Terminal";
 import { Background } from "@/components/Background";
+import { Footer } from "@/components/Footer";
+import { Cursor } from "@/components/Cursor";
+import { SystemProvider } from "@/context/SystemContext";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function RootLayout({
   children,
@@ -31,21 +35,26 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Background />
-          <div className="flex-1 flex flex-col relative">
-             {/* Main Content Frame Container */}
-             <main className="flex-1 flex flex-col">
-                {children}
-             </main>
-             <Terminal />
-          </div>
-        </ThemeProvider>
+        <SystemProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Cursor />
+            <Background />
+            <div className="flex-1 flex flex-col relative z-10">
+               {/* Main Content Frame Container */}
+               <main className="flex-1 flex flex-col">
+                  {children}
+               </main>
+               <Footer />
+               <Terminal />
+               <Toaster />
+            </div>
+          </ThemeProvider>
+        </SystemProvider>
       </body>
     </html>
   );
