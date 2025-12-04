@@ -24,13 +24,17 @@ import { Footer } from "@/components/Footer";
 import { Cursor } from "@/components/Cursor";
 import { SystemProvider } from "@/context/SystemContext";
 import { Toaster } from "@/components/ui/sonner";
-import { KeyboardNavigation } from "@/components/KeyboardNavigation";
+// import { KeyboardNavigation } from "@/components/KeyboardNavigation";
+import { HomeButton } from "@/components/HomeButton";
+import { getProfile } from "@/lib/db";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const profile = await getProfile();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -45,7 +49,8 @@ export default function RootLayout({
           >
             <Cursor />
             <Background />
-            <KeyboardNavigation />
+            {/* <KeyboardNavigation /> */}
+            <HomeButton image={profile.image} />
             <div className="flex-1 flex flex-col relative z-10">
                {/* Main Content Frame Container */}
                <main className="flex-1 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">

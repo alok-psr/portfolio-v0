@@ -24,7 +24,7 @@ export function HomeClient({ profile, projects }: HomeClientProps) {
           transition={{ duration: 0.5 }}
           className="relative"
         >
-          <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-muted mx-auto relative z-10 bg-muted flex items-center justify-center">
+          <div className="w-32 h-32 md:w-48 md:h-48 rounded-[2rem] overflow-hidden border-4 border-muted mx-auto relative z-10 bg-muted flex items-center justify-center">
              {profile.image ? (
                // eslint-disable-next-line @next/next/no-img-element
                <img src={profile.image} alt={profile.name} className="object-cover w-full h-full" />
@@ -32,7 +32,7 @@ export function HomeClient({ profile, projects }: HomeClientProps) {
                <span className="text-4xl font-bold text-muted-foreground">ME</span>
              )}
           </div>
-          <div className="absolute inset-0 bg-accent/20 blur-3xl rounded-full -z-10 scale-150 animate-pulse" />
+          <div className="absolute inset-0 bg-accent/20 blur-3xl rounded-[2rem] -z-10 scale-150 animate-pulse" />
         </motion.div>
 
         <motion.div

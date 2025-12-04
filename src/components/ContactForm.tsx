@@ -47,6 +47,7 @@ export function ContactForm() {
               Name
             </label>
             <motion.input
+              suppressHydrationWarning
               whileFocus={{ scale: 1.01, borderColor: "var(--accent)" }}
               type="text"
               id="name"
@@ -61,6 +62,7 @@ export function ContactForm() {
               Email
             </label>
             <motion.input
+              suppressHydrationWarning
               whileFocus={{ scale: 1.01, borderColor: "var(--accent)" }}
               type="email"
               id="email"
@@ -86,6 +88,7 @@ export function ContactForm() {
         </div>
 
         <motion.button
+          suppressHydrationWarning
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           disabled={isLoading || isSuccess}
