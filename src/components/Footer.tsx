@@ -6,10 +6,7 @@ import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 export function Footer() {
   return (
     <footer className="w-full border-t border-border py-8 mt-auto">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Alok. All rights reserved.
-        </div>
+      <div className="container mx-auto px-4 flex flex-col items-center justify-center gap-4">
         
         <div className="flex items-center gap-6">
           <Link href="https://github.com/alok-psr" target="_blank" className="text-muted-foreground hover:text-accent transition-colors">
@@ -26,9 +23,7 @@ export function Footer() {
           </Link>
         </div>
 
-        <div className="text-sm text-muted-foreground">
-          Built with <span className="text-accent">Next.js</span> & <span className="text-accent">Tailwind</span>
-        </div>
+        
       </div>
     </footer>
   );
