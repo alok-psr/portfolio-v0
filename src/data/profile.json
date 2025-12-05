@@ -1,24 +1,24 @@
 {
   "name": "Alok",
-  "title": "Full Stack Developer & UI/UX Enthusiast.",
+  "title": "Full Stack Developer & IOT Enthusiast.",
   "bio": "Building digital experiences with code and creativity.",
   "about": {
     "title": "About Me",
-    "subtitle": "Developer, Designer, and Creator.",
-    "description1": "Hello! I'm Alok, a passionate developer based in San Francisco. I love building things for the web, from simple landing pages to complex web applications.",
+    "subtitle": "Developer, IOT Enthusiast, and Creator.",
+    "description1": "Hello! I'm Alok, a passionate developer based in New Delhi,India. I love building things for the web, from simple landing pages to complex web applications.",
     "description2": "My journey started when I wrote my first line of code in Python. Since then, I've explored various technologies and frameworks, but I always find myself coming back to the web.",
-    "description3": "When I'm not coding, you can find me reading about the latest tech trends, playing video games, or hiking."
+    "description3": "When I'm not coding, you can find me reading about the latest tech trends, playing video games, or on the basketball court."
   },
   "image": "https://res.cloudinary.com/djqnrksac/image/upload/v1764870281/Gen_y_Senku_iigeua.jpg",
   "social": {
-    "github": "https://github.com",
-    "linkedin": "https://linkedin.com",
-    "twitter": "https://twitter.com",
-    "email": "mailto:hello@example.com"
+    "github": "https://github.com/alok-psr",
+    "linkedin": "https://linkedin.com/in/alok-pratap-singh-rathor-209240324",
+    "twitter": "https://x.com/AL0K__PSR",
+    "email": "mailto:alokrathor136@gmail.com"
   },
   "skills": {
     "frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML/CSS"],
-    "backend": ["Node.js", "Python", "PostgreSQL", "Supabase", "Express"],
-    "tools": ["Docker", "Git", "VS Code", "Figma", "Vercel"]
+    "backend": ["Node.js", "Python","MongoDB", "PostgreSQL", "supabase", "express"],
+    "tools": ["Git","linux","web-sockets" , "vercel"]
   }
 }

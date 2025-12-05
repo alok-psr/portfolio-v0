@@ -72,3 +72,18 @@ export async function getProfile(): Promise<ProfileData> {
 export async function updateProfile(profile: ProfileData): Promise<void> {
   writeJson(PROFILE_FILE, profile);
 }
+
+// Experience
+const EXPERIENCE_FILE = path.join(DATA_DIR, "experience.json");
+
+export interface Experience {
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  skills: string[];
+}
+
+export async function getExperience(): Promise<Experience[]> {
+  return readJson<Experience[]>(EXPERIENCE_FILE);
+}

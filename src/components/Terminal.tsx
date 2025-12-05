@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSystem } from "@/context/SystemContext";
 import { Typewriter } from "@/components/Typewriter";
+import { MatrixRain } from "@/components/MatrixRain";
 
 interface Command {
   command: string;
@@ -93,11 +94,11 @@ export function Terminal() {
   React.useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 100);
-      if (!input && mode === "default") {
+      if (!input && mode === "default" && history.length === 0) {
         setSuggestions(pages);
       }
     }
-  }, [isOpen, mode, input, pages]);
+  }, [isOpen, mode, input, pages, history]);
 
   // Auto-scroll to bottom
   React.useEffect(() => {
@@ -114,7 +115,7 @@ export function Terminal() {
     if (mode === "admin_login") return; // No suggestions in admin mode
 
     if (!value.trim()) {
-      if (mode === "default") {
+      if (mode === "default" && history.length === 0) {
         setSuggestions(pages);
       } else {
         setSuggestions([]);
@@ -188,22 +189,42 @@ export function Terminal() {
         break;
       case "help":
         output = (
-          <div className="space-y-1">
-            <p>Available commands:</p>
-            <ul className="list-disc list-inside pl-2 text-muted-foreground">
-              <li><span className="text-accent">[page]</span> - Navigate directly</li>
-              <li><span className="text-accent">[social]</span> - Open social link</li>
-              <li><span className="text-accent">font [hacker|default]</span> - Change font</li>
-              <li><span className="text-accent">ls</span> - List files</li>
-              <li><span className="text-accent">clear</span> - Clear history</li>
-            </ul>
-            <p className="mt-2 text-xs text-muted-foreground">Pages: {pages.join(", ")}</p>
+          <div className="space-y-3">
+            <div>
+              <p className="text-accent font-bold mb-1 border-b border-border/50 pb-1 w-fit">Navigation</p>
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 text-muted-foreground text-sm">
+                {pages.map(p => <span key={p} className="hover:text-foreground transition-colors cursor-pointer" onClick={() => handleCommand(p)}>{p}</span>)}
+              </div>
+            </div>
+            
+            <div>
+              <p className="text-accent font-bold mb-1 border-b border-border/50 pb-1 w-fit">Socials</p>
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 text-muted-foreground text-sm">
+                {Object.keys(socialLinks).map(s => <span key={s} className="hover:text-foreground transition-colors cursor-pointer" onClick={() => handleCommand(s)}>{s}</span>)}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-accent font-bold mb-1 border-b border-border/50 pb-1 w-fit">System</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-muted-foreground text-sm">
+                <div><span className="text-foreground">clear</span> - Clear terminal</div>
+                <div><span className="text-foreground">ls</span> - List files</div>
+                <div><span className="text-foreground">font [hacker|default]</span> - Set font</div>
+                <div><span className="text-foreground">whoami</span> - User info</div>
+                <div><span className="text-foreground">date</span> - Current time</div>
+                <div><span className="text-foreground">matrix</span> - ???</div>
+              </div>
+            </div>
+            
+            <div className="text-xs text-muted-foreground mt-2 italic">
+              Tip: Use <span className="text-accent">Tab</span> to autocomplete commands.
+            </div>
           </div>
         );
         break;
       case "clear":
         setHistory([]);
-        setSuggestions([]);
+        setSuggestions(pages);
         return;
       case "sudo":
         output = <span className="text-red-500">Permission denied: You are not the admin. Nice try though! 😈</span>;
@@ -241,14 +262,7 @@ export function Terminal() {
         output = args.slice(1).join(" ");
         break;
       case "matrix":
-        output = (
-          <div className="text-green-500 font-mono text-xs leading-none">
-            {Array.from({ length: 10 }).map((_, i) => (
-              <div key={i}>{Math.random().toString(2).substring(2)}</div>
-            ))}
-            <div>Wake up, Neo...</div>
-          </div>
-        );
+        output = <MatrixRain />;
         break;
       case "goto":
         // Keep for backward compatibility

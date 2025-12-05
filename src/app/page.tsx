@@ -1,4 +1,4 @@
-import { getProfile, getProjects } from "@/lib/db";
+import { getProfile, getProjects, getExperience } from "@/lib/db";
 import { HomeClient } from "@/components/HomeClient";
 
 import { Metadata } from "next";
@@ -19,6 +19,7 @@ export default async function Home() {
   }
 
   const projects = await getProjects();
+  const experience = await getExperience();
 
-  return <HomeClient profile={profile} projects={projects} />;
+  return <HomeClient profile={profile} projects={projects} experience={experience} />;
 }

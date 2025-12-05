@@ -4,19 +4,22 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Terminal, Github, Linkedin, Twitter, Mail } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
-import { ProfileData, Project } from "@/lib/db";
+import { ProfileData, Project, Experience } from "@/lib/db";
 
 interface HomeClientProps {
   profile: ProfileData;
   projects: Project[];
+  experience: Experience[];
 }
 
-export function HomeClient({ profile, projects }: HomeClientProps) {
+export function HomeClient({ profile, projects, experience }: HomeClientProps) {
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 2);
+  // Show only the latest 2 experiences on home
+  const recentExperience = experience.slice(0, 2);
 
   return (
     <div className="flex flex-col items-center min-h-screen">
-      {/* Hero Section */}
+      {/* ... (Hero Section remains same) ... */}
       <section className="flex flex-col items-center justify-center min-h-[90vh] p-8 text-center space-y-8 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -181,20 +184,15 @@ export function HomeClient({ profile, projects }: HomeClientProps) {
             </div>
         </div>
         <div className="space-y-8">
-            <div className="border-l-2 border-border pl-6 relative">
-                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-background border-2 border-accent" />
-                <h3 className="text-xl font-bold">Senior Full Stack Developer</h3>
-                <p className="text-accent">Tech Solutions Inc.</p>
-                <p className="text-sm text-muted-foreground mb-2">2022 - Present</p>
-                <p className="text-muted-foreground">Leading development of scalable web apps and mentoring junior devs.</p>
+          {recentExperience.map((exp, index) => (
+            <div key={index} className="border-l-2 border-border pl-6 relative">
+              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-background border-2 border-accent" />
+              <h3 className="text-xl font-bold">{exp.role}</h3>
+              <p className="text-accent">{exp.company}</p>
+              <p className="text-sm text-muted-foreground mb-2">{exp.period}</p>
+              <p className="text-muted-foreground line-clamp-2">{exp.description}</p>
             </div>
-            <div className="border-l-2 border-border pl-6 relative">
-                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-background border-2 border-muted" />
-                <h3 className="text-xl font-bold">Frontend Developer</h3>
-                <p className="text-accent">Creative Agency</p>
-                <p className="text-sm text-muted-foreground mb-2">2020 - 2022</p>
-                <p className="text-muted-foreground">Built interactive websites for high-profile clients.</p>
-            </div>
+          ))}
         </div>
       </section>
     </div>
