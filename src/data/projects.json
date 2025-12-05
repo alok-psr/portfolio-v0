@@ -4,7 +4,7 @@
     "title": "Portfolio",
     "description": "A developer portfolio with a terminal-based navigation system and clean aesthetic.",
     "tags": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    "link": "https://portfolio.demo",
+    "link": "https://alokpsr.vercel.app",
     "github": "https://github.com/alok-psr/portfolio-v0",
     "featured": true
   },
@@ -22,7 +22,7 @@
     "title": "Quizar",
     "description": "WebSocket-based Quiz application with multiplayer support and dynamic question generation.",
     "tags": ["Socket.io", "Express", "React"],
-    "link": "https://chat.demo",
+    "link": "https://quizar-ten.vercel.app",
     "github": "https://github.com/alok-psr/Quizar",
     "featured": true
   }
