@@ -27,12 +27,24 @@ export function Terminal() {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const savedHistory = React.useRef<Command[]>([]);
+  
+  // Refs for event listener access to avoid stale closures
+  const modeRef = React.useRef(mode);
+  const historyRef = React.useRef(history);
+  const isOpenRef = React.useRef(isOpen);
+
+  React.useEffect(() => {
+    modeRef.current = mode;
+    historyRef.current = history;
+    isOpenRef.current = isOpen;
+  }, [mode, history, isOpen]);
+
   const router = useRouter();
 
   const [suggestions, setSuggestions] = React.useState<string[]>([]);
   const [selectedIndex, setSelectedIndex] = React.useState(-1);
 
-  const pages = ["home", "about", "projects", "contact", "blog", "experience"];
+  const pages = React.useMemo(() => ["home", "about", "projects", "contact", "blog", "experience"], []);
   const socialLinks: Record<string, string> = {
     x: "https://x.com/AL0K__PSR",
     github: "https://github.com/alok-psr",
@@ -45,21 +57,29 @@ export function Terminal() {
   // Toggle with Ctrl+K and Secret Ctrl+U
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Use refs to get current state values
+      const currentIsOpen = isOpenRef.current;
+      const currentMode = modeRef.current;
+      const currentHistory = historyRef.current;
+
+      if (e.key === "Escape" && currentIsOpen) {
+        setIsOpen(false);
+      }
       if (e.ctrlKey && e.key === "k") {
         e.preventDefault();
-        setIsOpen(!isOpen);
+        setIsOpen(!currentIsOpen);
         // Reset mode if closing, or keep if opening? Let's reset to default on toggle for safety
-        if (isOpen) setMode("default"); 
+        if (currentIsOpen) setMode("default"); 
       }
       if (e.ctrlKey && e.key === "u") {
         e.preventDefault();
-        if (isOpen && mode === "admin_login") {
+        if (currentIsOpen && currentMode === "admin_login") {
             setMode("default");
             setHistory(savedHistory.current);
         } else {
             setIsOpen(true);
             setMode("admin_login");
-            savedHistory.current = history;
+            savedHistory.current = currentHistory;
             setHistory([]); 
             setTimeout(() => inputRef.current?.focus(), 100);
         }
@@ -67,14 +87,17 @@ export function Terminal() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+  }, [setIsOpen]);
 
-  // Focus input when opened
+  // Focus input and show suggestions when opened
   React.useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 100);
+      if (!input && mode === "default") {
+        setSuggestions(pages);
+      }
     }
-  }, [isOpen]);
+  }, [isOpen, mode, input, pages]);
 
   // Auto-scroll to bottom
   React.useEffect(() => {
@@ -91,7 +114,11 @@ export function Terminal() {
     if (mode === "admin_login") return; // No suggestions in admin mode
 
     if (!value.trim()) {
-      setSuggestions([]);
+      if (mode === "default") {
+        setSuggestions(pages);
+      } else {
+        setSuggestions([]);
+      }
       return;
     }
 
@@ -389,7 +416,7 @@ export function Terminal() {
               >
                 {mode === "default" && (
                     <div className="text-muted-foreground">
-                    Welcome to the portfolio terminal. Type <span className="text-accent">'help'</span> to get started.
+                    Welcome to the portfolio terminal. Type <span className="text-accent">&apos;help&apos;</span> to get started.
                     </div>
                 )}
                 {mode === "admin_login" && history.length === 0 && (

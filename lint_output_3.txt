@@ -1,0 +1,45 @@
+
+> portfolio@0.1.0 lint
+> eslint
+
+
+C:\Users\alokr\OneDrive\Desktop\projs\portfolio\src\app\admin\page.tsx
+    5:10  warning  'motion' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+   13:23  warning  'saveProjects' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+   19:9   warning  'router' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   48:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\alokr\OneDrive\Desktop\projs\portfolio\src\app\admin\page.tsx:48:9
+  46 |     const isAuth = sessionStorage.getItem("admin_authenticated");
+  47 |     if (isAuth === "true") {
+> 48 |         setIsAuthenticated(true);
+     |         ^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  49 |     }
+  50 |   }, []);
+  51 |   useEffect(() => {  react-hooks/set-state-in-effect
+  177:45  warning  'index' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+
+C:\Users\alokr\OneDrive\Desktop\projs\portfolio\src\components\Cursor.tsx
+  4:34  warning  'useSpring' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\alokr\OneDrive\Desktop\projs\portfolio\src\components\HomeClient.tsx
+  45:18  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\alokr\OneDrive\Desktop\projs\portfolio\src\components\ImageUpload.tsx
+   5:21  warning  'Loader2' is defined but never used       @typescript-eslint/no-unused-vars
+  37:29  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\alokr\OneDrive\Desktop\projs\portfolio\src\components\PageHeader.tsx
+  42:6  warning  React Hook useEffect has a missing dependency: 'originalText'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\alokr\OneDrive\Desktop\projs\portfolio\src\components\Terminal.tsx
+  100:6  warning  React Hook React.useEffect has a missing dependency: 'pages'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+✖ 11 problems (3 errors, 8 warnings)
+
