@@ -56,6 +56,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: "https://alokpsr.vercel.app",
+  },
+  verification: {
+    google:
+    "i00C2ZR_KUXAnSNd-3hFLLc3cVdLcZE4wAqFjUlkVxc",
+  },
 };
 
 import { ThemeProvider } from "@/components/theme-provider";
@@ -68,6 +75,8 @@ import { Toaster } from "@/components/ui/sonner";
 // import { KeyboardNavigation } from "@/components/KeyboardNavigation";
 import { HomeButton } from "@/components/HomeButton";
 import { getProfile } from "@/lib/db";
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 
 export default async function RootLayout({
   children,
@@ -76,11 +85,32 @@ export default async function RootLayout({
 }>) {
   const profile = await getProfile();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    url: "https://alokpsr.vercel.app",
+    image: profile.image,
+    sameAs: [
+      profile.social.github,
+      profile.social.linkedin,
+      profile.social.twitter,
+    ],
+    jobTitle: profile.title,
+    description: profile.bio,
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
+      
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <SystemProvider>
           <ThemeProvider
             attribute="class"
@@ -100,6 +130,7 @@ export default async function RootLayout({
                <Footer />
                <Terminal />
                <Toaster />
+               <Analytics />
             </div>
           </ThemeProvider>
         </SystemProvider>

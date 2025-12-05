@@ -1,0 +1,21 @@
+# Alok - Full Stack Developer Portfolio
+
+## About
+Alok is a Full Stack Developer & UI/UX Enthusiast based in San Francisco.
+He builds digital experiences with code and creativity.
+
+## Skills
+- Frontend: React, Next.js, TypeScript, Tailwind CSS, Framer Motion
+- Backend: Node.js, Python, PostgreSQL, Supabase
+- Tools: Docker, Git, VS Code, Figma
+
+## Social Links
+- GitHub: https://github.com/alok-psr
+- LinkedIn: https://www.linkedin.com/in/alok-pratap-singh-rathor-209240324/
+- Twitter: https://x.com/AL0K__PSR
+
+## Navigation
+- /: Home
+- /about: About Me
+- /projects: Projects
+- /contact: Contact
