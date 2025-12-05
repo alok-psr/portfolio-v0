@@ -13,8 +13,49 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Alok",
-  description: "Alok's Portfolio Site",
+  metadataBase: new URL("https://alokpsr.vercel.app"),
+  title: {
+    default: "Alok | Full Stack Developer",
+    template: "%s | Alok",
+  },
+  description: "Full Stack Developer & UI/UX Enthusiast. Building digital experiences with code and creativity.",
+  keywords: ["Full Stack Developer", "React", "Next.js", "TypeScript", "UI/UX", "Portfolio", "Web Development"],
+  authors: [{ name: "Alok" }],
+  creator: "Alok",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://alok-portfolio.vercel.app",
+    title: "Alok | Full Stack Developer",
+    description: "Full Stack Developer & UI/UX Enthusiast. Building digital experiences with code and creativity.",
+    siteName: "Alok's Portfolio",
+    images: [
+      {
+        url: "/og-image.png", // We should ideally create this or use the profile image
+        width: 1200,
+        height: 630,
+        alt: "Alok - Full Stack Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alok | Full Stack Developer",
+    description: "Full Stack Developer & UI/UX Enthusiast. Building digital experiences with code and creativity.",
+    images: ["/og-image.png"],
+    creator: "@AL0K__PSR",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 import { ThemeProvider } from "@/components/theme-provider";
